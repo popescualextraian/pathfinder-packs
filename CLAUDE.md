@@ -24,7 +24,7 @@ Each top-level area (other than `common/`) represents a single role. Add a new r
 
 - **Agents** live in `<area>/agents/<agent-name>.md` and follow the Claude Code subagent format (frontmatter with `name`, `description`, `tools`, optional `model`; body is the system prompt).
 - **Skills** live in `<area>/skills/<skill-name>/SKILL.md` (plus any supporting files in the same folder) and follow the Claude Code skill format (frontmatter with `name` and `description`; body is the instructions).
-- **Common** holds anything reusable across roles (e.g. document formatting, diagramming, repo navigation). Role areas should depend on `common/` rather than duplicating it.
+- **Common** holds anything reusable across roles (e.g. document formatting, diagramming, repo navigation). Role areas should depend on `common/` rather than duplicating it. Includes `common/skills/librarian/` — vault ingest + index maintenance, used by role skills as the shared source-of-truth layer.
 - One concern per skill/agent. Keep descriptions specific so Claude picks the right one.
 
 ## Adding a new role
