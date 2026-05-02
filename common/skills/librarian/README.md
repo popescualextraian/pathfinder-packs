@@ -8,18 +8,23 @@ Librarian shells out to two converters. Install whichever you'll actually need �
 
 ### markitdown — primary converter
 
-Handles PDF, PPTX, XLSX, HTML, and images. Python package:
+Handles PDF, PPTX, XLSX, HTML, and more. **Format support is opt-in via extras** — bare `markitdown` silently produces empty output for PDFs and other binary formats. Always install with `[all]`.
 
 ```bash
-pip install markitdown
-# or, isolated:
-pipx install markitdown
+pipx install 'markitdown[all]'
+```
+
+Already installed bare `markitdown` and PDFs come back empty? Add the extras without reinstalling:
+
+```bash
+pipx inject markitdown 'markitdown[all]'
 ```
 
 Verify:
 
 ```bash
 markitdown --version
+markitdown some.pdf -o /tmp/test.md && wc -l /tmp/test.md   # should be > 0
 ```
 
 ### pandoc — fallback for structured documents
@@ -52,11 +57,11 @@ If markitdown struggles on a particular PDF (scanned pages, broken structure), t
 
 ## Initialize a vault
 
-Librarian needs at minimum a `raw/` directory somewhere. To opt into config and indexing:
+Librarian needs at minimum a `_raw/` directory somewhere. To opt into config and indexing:
 
 ```bash
 cd /path/to/your/vault
-mkdir -p raw
+mkdir -p _raw
 
 # optional: copy the config template
 cp /path/to/pathfinder-packs/common/skills/librarian/default-vault.yaml .vault.yaml
@@ -69,9 +74,9 @@ Edit `.vault.yaml` if the defaults don't fit (raw dir name, processed-raw locati
 
 ## Using the skill
 
-Drop a file in `raw/`, then ask Claude:
+Drop a file in `_raw/`, then ask Claude:
 
-- "ingest the file in raw/"
+- "ingest the file in _raw/"
 - "convert and file the PDF I just dropped in"
 - "reindex the vault"
 - "the index is out of date — find missing notes"

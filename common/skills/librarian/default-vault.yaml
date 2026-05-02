@@ -3,13 +3,15 @@
 
 # Where source files land for ingestion. The only directory librarian
 # requires; it will not be created automatically — make it yourself.
-raw_dir: raw
+# Leading underscore is intentional: sorts to the top, and Obsidian-style
+# tools hide underscore-prefixed folders from the main view.
+raw_dir: _raw
 
 # Where ingested originals are moved after successful conversion.
 # Set to `null` to leave originals in place after ingest.
-processed_raw: raw/_done
+processed_raw: _raw/_done
 
-# How standalone images dropped in raw/ are treated:
+# How standalone images dropped in the raw dir are treated:
 #   describe   — generate a 1–3 sentence sidecar description, index the sidecar
 #   store-only — move the image file but skip description and indexing
 image_handling: describe
